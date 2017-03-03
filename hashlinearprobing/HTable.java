@@ -1,5 +1,3 @@
-package hashlinearprobing;
-
 import java.math.BigInteger;																						//Para poder usar el KEY, que es un String con su valor en ASCII
 
 public class HTable {
