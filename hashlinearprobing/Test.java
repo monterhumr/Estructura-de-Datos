@@ -1,5 +1,3 @@
-package hashlinearprobing;
-
 import javax.swing.JOptionPane;
 
 public class Test {
