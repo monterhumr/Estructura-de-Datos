@@ -1,12 +1,11 @@
-import java.math.BigInteger;
 import java.util.Random;
-
 
 public class HTable {
 
     private final static int TABLE_SIZE = 29;																				//Define el tamaño de la tabla, se usa como MOD (29 es un numero primo
     Entry[] htable;
-    Entry aux = new Entry(null, 0);
+    Entry aux = new Entry(0, 0);
+    int p = 977;
 
     public HTable() {
           htable = new Entry[TABLE_SIZE];
@@ -14,13 +13,13 @@ public class HTable {
                 htable[i] = aux;  		
     }
     
-    public void write(String key, int data) {																			//Añade una DATA a la TABLA, pide KEY y el valor DATA
-    	int ranP = getPrime();
-    	int hash = new BigInteger(toAscii(key)).mod(new BigInteger(((Integer)ranP).toString())).intValue();//keyAscii % ranP
+    public void write(int key, int data) {																			//Añade una DATA a la TABLA, pide KEY y el valor DATA
+    	int a = getRandomA();
+    	int b = getRandomB();
+    	int hash = ((a * key+b)%p)%TABLE_SIZE;
     	while (htable[hash] != aux && htable[hash].getKey() != key)
-        	hash = (hash + 1) % ranP;
+        	hash = (hash + 1) % TABLE_SIZE;
         htable[hash] = new Entry(key, data);
-        
     }
     
     public String print(){
@@ -33,27 +32,20 @@ public class HTable {
     	return table;
     }
 	
-    public static int getPrime(){
-    	int[] primesList = {7, 11, 13, 17, 19, 23, 29};
-    	int min = 0;
-	    int max = 6;
+    public static int getRandomA(){
+    	int min = 1;
+	    int max = 29;
         Random rand = new Random();
         int randomNum = rand.nextInt((max - min) + 1) + min;
-    	int prime = primesList[randomNum];
-    	return prime;
+    	return randomNum;
     }
-	
-    public static String toAscii(String skey){																				//Convierte la KEY tipo string en su valor ACII (int)
-        StringBuilder sb = new StringBuilder();
-        int asciiInt;
-
-        for (int i = 0; i < skey.length(); i++){																			//Busca cada valor de los caracteres del String
-
-            char c = skey.charAt(i);
-            asciiInt = (int)c; 
-            sb.append(asciiInt);
-        }
-        return String.valueOf(sb);
+    
+    public static int getRandomB(){
+    	int min = 0;
+	    int max = 29;
+        Random rand = new Random();
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+    	return randomNum;
     }
     
 }
