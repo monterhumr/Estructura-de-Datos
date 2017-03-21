@@ -1,15 +1,15 @@
 public class Entry {
-    private String key;
+    private int key;
     private int data;
 
 
-    public Entry(String key, int data) {
+    public Entry(int key, int data) {
           this.key = key;
           this.data = data;
 
     }     
 
-    public String getKey() {
+    public int getKey() {
           return key;
     }
 
