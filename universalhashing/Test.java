@@ -1,3 +1,5 @@
+package universalhashing;
+
 import javax.swing.JOptionPane;
 
 public class Test {
@@ -12,8 +14,9 @@ public class Test {
 			
 			String inn1 = JOptionPane.showInputDialog("Ingresa la key "+i+" de tu lista.");
 			String inn2 = JOptionPane.showInputDialog("Ingresa el dato "+i+" de tu lista.");
-			int cal = Integer.parseInt(inn2);
-			tabla.write(inn1,cal);
+			int llave = Integer.parseInt(inn1);
+			int dato = Integer.parseInt(inn2);
+			tabla.write(llave,dato);
 			
 		}
 		
